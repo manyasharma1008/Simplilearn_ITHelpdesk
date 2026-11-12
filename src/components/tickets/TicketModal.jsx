@@ -4,11 +4,11 @@ import {useApp} from '../../context/AppContext'
 import {STATUSES,PRIORITIES} from '../../data/constants'
 import {useTicketSummary} from '../../hooks'
 import {fmtT,slaState,countdown} from '../../utils/helpers'
+const L=({k,children})=><div><div className="text-xs text-slate-500 mb-1">{k}</div>{children}</div>
 export default function TicketModal({id,onClose,canEdit}){
  const {tickets,users,patch,comment}=useApp(),t=tickets.find(x=>x.id===id),[c,setC]=useState(''),sm=useTicketSummary(t)
  if(!t)return null
  const ai=sm.data,techs=users.filter(u=>u.role==='Technician'),tech=users.find(u=>u.id===t.tech)
- const L=({k,children})=><div><div className="text-xs text-slate-500 mb-1">{k}</div>{children}</div>
  return (<Modal wide title={`${t.id} · ${t.title}`} onClose={onClose}><div className="grid md:grid-cols-2 gap-5 text-sm">
   <div className="space-y-4">
    <div className="flex gap-2 flex-wrap"><Badge v={t.status}/><Badge v={t.priority}/><Badge v={t.sentiment}/><Badge v={slaState(t)}/></div>

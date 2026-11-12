@@ -38,9 +38,10 @@ export function AIChat(){
    {typing&&<div className="text-slate-400 text-sm pl-7">Assistant is typing…</div>}<div ref={end}/></div>
   <div className="flex flex-wrap gap-2 my-3">{SUG.map(s=><button key={s} onClick={()=>send(s)} disabled={typing} className="text-xs border rounded-full px-3 py-1 hover:bg-slate-50 disabled:opacity-50">{s}</button>)}</div>
   <div className="flex gap-2"><input className={inp+' flex-1'} value={v} onChange={e=>setV(e.target.value)} onKeyDown={e=>e.key==='Enter'&&send(v)} placeholder="Describe your issue"/><button className={btn} disabled={typing} onClick={()=>send(v)}><Send size={14}/>Send</button></div></Card></Page>)}
+const L=({k,children})=><label className="block text-sm"><span className="text-slate-600">{k}</span>{children}</label>
 export function CreateTicket(){
  const {addTicket,me}=useApp(),[f,setF]=useState({title:'',desc:'',category:'Auto',device:'',dept:me.dept,priority:'Auto'}),[done,setDone]=useState(null),[file,setFile]=useState(null),[busy,setBusy]=useState(false),[err,setErr]=useState('')
- const u=k=>e=>setF({...f,[k]:e.target.value}),L=({k,children})=><label className="block text-sm"><span className="text-slate-600">{k}</span>{children}</label>
+ const u=k=>e=>setF({...f,[k]:e.target.value})
  const submit=async()=>{setBusy(true);setErr('');try{setDone(await addTicket(f,{file}))}catch(e){setErr(e.message||'Could not submit the ticket')}finally{setBusy(false)}}
  if(done)return <Page title="Ticket submitted"><Card className="max-w-lg"><div className="text-center py-4"><CheckCircle2 className="mx-auto text-emerald-600" size={36}/><p className="mt-2 font-semibold">{done.id}</p><div className="flex justify-center gap-1 mt-1"><Badge v={done.priority}/><Badge v={done.category}/></div><p className="text-sm text-slate-600 mt-2">AI priority score: <b>{done.score}/100</b>. {done.reason}</p><p className="text-sm text-slate-500 mt-1">Our team will pick this up shortly.</p><button className={btn+' mt-4'} onClick={()=>{setDone(null);setFile(null);setF({...f,title:'',desc:''})}}>Create another ticket</button></div></Card></Page>
  return (<Page title="Create Ticket"><Card className="max-w-2xl"><div className="space-y-3">
