@@ -1,0 +1,6 @@
+project_id = "shfrnxdkcrnfjeigadzw"
+
+# The browser calls this function with the publishable (anon) key, which is not a JWT,
+# so JWT verification must stay off or every call fails with "Invalid JWT".
+[functions.ai]
+verify_jwt = false

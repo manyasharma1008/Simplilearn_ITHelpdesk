@@ -1,0 +1,7 @@
+@tailwind base;@tailwind components;@tailwind utilities;
+body{background:#ffe17c;color:#000;font-family:Satoshi,system-ui,sans-serif;font-weight:500;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:'Cabinet Grotesk',Satoshi,sans-serif;font-weight:800;letter-spacing:-0.025em}
+.dots{background-image:radial-gradient(rgba(0,0,0,.1) 2px,transparent 2px);background-size:32px 32px}
+@keyframes marquee{to{transform:translateX(-50%)}}
+.marquee{animation:marquee 30s linear infinite;width:max-content}
+@media (prefers-reduced-motion:reduce){.marquee{animation:none}}

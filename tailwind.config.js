@@ -1,0 +1,1 @@
+export default {content:['./index.html','./src/**/*.{js,jsx}'],theme:{extend:{colors:{navy:{DEFAULT:'#171e19',700:'#272727',50:'#b7c6c2'}},borderColor:{DEFAULT:'#000'},fontFamily:{sans:['Satoshi','system-ui','sans-serif'],display:['"Cabinet Grotesk"','Satoshi','sans-serif']}}},plugins:[]}

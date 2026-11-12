@@ -1,0 +1,8 @@
+import {ResponsiveContainer,PieChart,Pie,Cell,Tooltip,BarChart,Bar,XAxis,YAxis,CartesianGrid,LineChart,Line,Legend} from 'recharts'
+export const COLORS=['#171e19','#e0b400','#6b8a82','#b7c6c2','#ffe17c','#272727','#8a8f8c']
+const ax={tick:{fontSize:11,fill:'#64748b'},axisLine:false,tickLine:false}
+export const Donut=({data})=>(<ResponsiveContainer width="100%" height={230}><PieChart><Pie data={data} dataKey="value" innerRadius={55} outerRadius={85} paddingAngle={2}>{data.map((_,i)=><Cell key={i} fill={COLORS[i%COLORS.length]} stroke="#000" strokeWidth={2}/>)}</Pie><Tooltip/><Legend iconSize={8} wrapperStyle={{fontSize:11}}/></PieChart></ResponsiveContainer>)
+export const Bars=({data,horizontal})=>(<ResponsiveContainer width="100%" height={230}><BarChart data={data} layout={horizontal?'vertical':'horizontal'} margin={{left:horizontal?30:-20}}><CartesianGrid stroke="#f1f5f9" vertical={!horizontal} horizontal={horizontal?false:true}/>
+ {horizontal?<><XAxis type="number" {...ax}/><YAxis type="category" dataKey="name" width={90} {...ax}/></>:<><XAxis dataKey="name" {...ax}/><YAxis {...ax}/></>}<Tooltip cursor={{fill:'#f8fafc'}}/><Bar dataKey="value" fill="#171e19" radius={[3,3,0,0]} barSize={18}/></BarChart></ResponsiveContainer>)
+export const Lines=({data,keys=['value']})=>(<ResponsiveContainer width="100%" height={230}><LineChart data={data} margin={{left:-20}}><CartesianGrid stroke="#f1f5f9" vertical={false}/><XAxis dataKey="name" {...ax}/><YAxis {...ax}/><Tooltip/>{keys.length>1&&<Legend iconSize={8} wrapperStyle={{fontSize:11}}/>}
+ {keys.map((k,i)=><Line key={k} type="monotone" dataKey={k} stroke={COLORS[i%COLORS.length]} strokeWidth={2} dot={false}/>)}</LineChart></ResponsiveContainer>)
